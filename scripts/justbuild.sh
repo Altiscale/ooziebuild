@@ -11,7 +11,7 @@ wget http://conjars.org/repo/org/pentaho/pentaho-aggdesigner-algorithm/5.1.5-jhy
 # Install these untrusted artifacts in our local maven cache so that we can build hive.
 mvn install:install-file -Dfile=pentaho-aggdesigner-algorithm-5.1.5-jhyde.jar -DgroupId=org.pentaho -DartifactId=pentaho-aggdesigner-algorithm -Dpackaging=jar -Dversion=5.1.5-jhyde
 
-mvn package assembly:single versions:set -DnewVersion=${ARTIFACT_VERSION} -DincludeHadoopJars=true -DskipTests=true -Phadoop-2 -Dhadoop.version=${HADOOP_VERSION} -Dpig.version=${PIG_VERSION} -Dhive.version=${HIVE_VERSION} -Dhadoop.auth.version=${HADOOP_VERSION} -Dhcatalog.version=${HIVE_VERSION}
+mvn install assembly:single versions:set -DnewVersion=${ARTIFACT_VERSION} -Puber -DskipTests=true -Phadoop-2 -Dhadoop.version=${HADOOP_VERSION} -Dpig.version=${PIG_VERSION} -Dhive.version=${HIVE_VERSION}
 
 # Discover the path of the local maven cache
 MAVEN_LOCAL_REPO=`mvn help:evaluate -Dexpression=settings.localRepository | egrep -v '[INFO]|Download'`
