@@ -2,6 +2,7 @@
 # this is going to be problematic for oozie, since we've already released RPMs which are 2.0.5
 # this default is different than all the others so that the script doesn't cause things to break when merged.
 ALTISCALE_RELEASE=${ALTISCALE_RELEASE:-2.0.5}
+RPM_DESCRIPTION="Apache Oozie ${OOZIE_VERSION}\n\n${DESCRIPTION}"
 
 
 export DEST_DIR=${INSTALL_DIR}/opt
@@ -11,19 +12,21 @@ tar -xvzpf ${WORKSPACE}/oozie/distro/target/oozie-${ARTIFACT_VERSION}-distro/ooz
 
 # Make the Client RPM
 
-export RPM_NAME=vcc-oozie-client-${ARTIFACT_VERSION}
+export RPM_NAME=alti-oozie-client-${ARTIFACT_VERSION}
 
 cd ${RPM_DIR}
 
 fpm --verbose \
---maintainer ops@altiscale.com \
+--maintainer support@altiscale.com \
 --vendor Altiscale \
 --provides ${RPM_NAME} \
 -s dir \
 -t rpm \
 -n ${RPM_NAME} \
+--url ${GITREPO} \
+--license "Apache License v2" \
 -v ${ALTISCALE_RELEASE} \
---description "${DESCRIPTION}" \
+--description "${RPM_DESCRIPTION}" \
 --iteration ${DATE_STRING} \
 --rpm-user root \
 --rpm-group root \
@@ -62,22 +65,24 @@ for i in `cat /tmp/$$.files`; do DIRECTORIES="--directories $i ${DIRECTORIES} ";
 export DIRECTORIES
 rm -f /tmp/$$.files
 
-export RPM_NAME=vcc-oozie-server-${ARTIFACT_VERSION}
+export RPM_NAME=alti-oozie-server-${ARTIFACT_VERSION}
 
 cd ${RPM_DIR}
 
 fpm --verbose \
 -C ${INSTALL_DIR} \
---maintainer ops@altiscale.com \
+--maintainer support@altiscale.com \
 --vendor Altiscale \
 --provides ${RPM_NAME} \
 --depends alti-mysql-connector \
+--url ${GITREPO} \
+--license "Apache License v2" \
 -s dir \
 -t rpm \
 -n ${RPM_NAME} \
 -v ${ALTISCALE_RELEASE} \
 ${DIRECTORIES} \
---description "${DESCRIPTION}" \
+--description "${RPM_DESCRIPTION}" \
 --iteration ${DATE_STRING} \
 --rpm-user oozie \
 --rpm-group hadoop \
