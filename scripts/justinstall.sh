@@ -9,7 +9,7 @@ export DEST_DIR=${INSTALL_DIR}/opt
 mkdir -p --mode=0755 ${DEST_DIR}
 cd ${DEST_DIR}
 tar -xvzpf ${WORKSPACE}/oozie/distro/target/oozie-${ARTIFACT_VERSION}-distro/oozie-${ARTIFACT_VERSION}/oozie-client-${ARTIFACT_VERSION}.tar.gz
-
+cp -r  ${WORKSPACE}/oozie/distro/target/oozie-${ARTIFACT_VERSION}-distro/oozie-${ARTIFACT_VERSION}/conf/ oozie-client-${ARTIFACT_VERSION}
 # Make the Client RPM
 
 export RPM_NAME=alti-oozie-client-${ARTIFACT_VERSION}
