@@ -87,4 +87,5 @@ ${DIRECTORIES} \
 --iteration ${DATE_STRING} \
 --rpm-user oozie \
 --rpm-group hadoop \
+--epoch 1 \
 opt
