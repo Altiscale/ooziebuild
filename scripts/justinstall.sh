@@ -23,6 +23,7 @@ fpm --verbose \
 -t rpm \
 -n ${RPM_NAME} \
 -v ${ALTISCALE_RELEASE} \
+--epoch 1 \
 --description "${DESCRIPTION}" \
 --iteration ${DATE_STRING} \
 --rpm-user root \
