@@ -32,6 +32,7 @@ fpm --verbose \
 --rpm-user root \
 --rpm-group root \
 -C ${INSTALL_DIR} \
+--epoch 1 \
 opt
 
 # Make the Server RPM
