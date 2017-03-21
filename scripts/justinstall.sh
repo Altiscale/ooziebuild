@@ -69,6 +69,7 @@ cd ${RPM_DIR}
 
 fpm --verbose \
 -C ${INSTALL_DIR} \
+--epoch 1
 --maintainer ops@altiscale.com \
 --vendor Altiscale \
 --provides ${RPM_NAME} \
